@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="badamba.css">
     <link rel="stylesheet" href="btest.scss">
    <script type="module" src="badamba.js"></script>
+   <script type="module" src="login.js"></script>
+   <script type="module" src="profile.js"></script>
+   <script type="module" src="comment.js"></script>
+   <!-- auth -->
+   <!-- <script type="module" src="firebase-auth.js"></script> -->
    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
    <!-- icons -->
@@ -14,33 +19,51 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <!-- aos cdn -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- logo font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
-<script>
-    // tailwind.config.js
-module.exports = {
-  // other configuration options
-  prefix: 'tw-',
-}
 
-</script>
 <body>
     
     
+ <header>
+  <nav >
+    <h5 class="header-logo-text" style="margin: 2%;">BADAMBA</h5>
+    <button id="signinBtn" type="button" style="color: white;font-weight: bold;font-size: 14px;" data-bs-toggle="modal" data-bs-target="#loginModal">
+      Sign in <i class="fa-solid fa-right-to-bracket fa-sm"></i>
+    </button>
+    <div class="dropdown">
+      <button class="dropdown-toggle"><b>Menu</b></button>
+      <ul class="dropdown-menu">
+        <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Profile</a></li>
+        <li><a href="#" onclick="smoothScrollTo('place')">Places to Visit</a></li>
+        <li><a href="#" onclick="smoothScrollTo('news')">News</a></li>
+        <li><a href="#" onclick="smoothScrollTo('history')">History</a></li>
+        <li><a href="#" onclick="smoothScrollTo('news')">Blog</a></li>
+        <li><a  style="color: rgb(159, 158, 158);cursor: pointer;">Messenger<br><span style="font-weight: 350;">(in progress)</span></a></li>
+        <li><a  style="color: rgb(159, 158, 158);cursor: pointer;">Community<br><span style="font-weight: 350;">(in progress)</span></a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#" id="logoutBtn" onclick="logout()">Logout &nbsp;<i class="fa-solid fa-right-from-bracket fa-sm"></i></a></li>
+      </ul>
+    </div> 
+      
+  </nav>
+  
+ </header>
   <section class="showcase" style="position: relative;">
-    <header>
-      <h2 class="logo">Badambagarh</h2>
-      <div class="toggle"></div>
-    </header>
     <div class=text-area-front style="display: flex;">
     <!-- <img   class="badamba-img" src="https://blogvirasatehind.files.wordpress.com/2019/08/img_1633.jpg?w=840"> -->
     <!-- <div class="overlay"></div> -->
-    <style>
-        
-    </style>
-    <title>Overlap Images</title>
+    
+   
 </head>
-<body>
 
+<body>
+  
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -62,20 +85,83 @@ module.exports = {
     </div>
 </div>
   </section>
-  <div class="menu">
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><button onclick="scrollToSection('place')">News</button></li>
-      <li><a href="#">Destination</a></li>
-      <li><a href="#">Blog</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
+ 
+     <!--Profile Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       
+<div id="userProfile">
+  <p>Loading...</p>
+</div>
+      </div>
+      <div class="modal-footer border-0">
+        <p class="beta-faq-popup-content"><b>Info</b>&nbsp;<i class="fa-solid fa-circle-question"></i>This section is currently under development <i class="fa-solid fa-laptop-code"></i></p>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
   </div>
+</div> 
+ 
+   <!-- login modal -->
   
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+<div class="container" id="the-auth-form">
+ 
+<!-- Signup Form -->
+<div class="mb-3" id="signupForm">
+  <h2>Signup</h2>
+  <input type="text" id="signupFirstName" placeholder="First Name" class="w-full px-4 py-2 mb-4 border rounded">
+<input type="text" id="signupLastName" placeholder="Last Name" class="w-full px-4 py-2 mb-4 border rounded">
+<input type="email" id="signupEmail" placeholder="Email" class="w-full px-4 py-2 mb-4 border rounded">
+<input type="password" id="signupPassword" placeholder="Password" class="w-full px-4 py-2 mb-4 border rounded">
+<button onclick="signup()" class="w-full bg-blue-500 text-white py-2 rounded">Signup</button>
+
+  <hr>
+  <button  onclick="toggleForms()" style="color: rgb(66, 66, 248);">Switch to Login</button>
+</div>
+
+<!-- Login Form -->
+<div class="mb-3" id="loginForm" style="display:none;">
+  <h2>Login</h2>
+  <form onsubmit="login(); return false;">
+    <input type="email" class="form-control mb-2" id="loginEmail" placeholder="Email" required>
+    <input type="password" class="form-control mb-2" id="loginPassword" placeholder="Password" required>
+    <button type="submit" class="btn btn-success">Login</button>
+ 
+    <hr>
+    <button type="button"  onclick="toggleForms()" style="color: rgb(66, 66, 248);">Existing user? Login Now</button>
+  </form> 
+</div>
+
+ 
+  </div>     
+      
+    </div>
+  </div>
+</div>
+</div>
+
+
+
  <!-- explore -->
- <section class="places-section" id="place">
+ <section class="places-section">
     <div class="container">
-        <h2 class="text-center mb-5">Places to Visit</h2>
+        <h2 class="text-center mb-5"  id="place">Places to Visit</h2>
         <div class="row">
             <!-- Place 1 -->
             <div class="col-lg-4">
@@ -241,10 +327,122 @@ module.exports = {
                         <p class="article-meta">Published on March 9, 2024 | Category: Science</p>
                     </div>
                 </div>
+    <!-- History -->
+                <section class="rounded-4 py-5 mt-5 history news-section">
+                    <div class="container history-1">
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <h3 class="section-heading" id="history">ବଡ଼ାମ୍ବା ଇତିହାସ (History of Baramba)</h3>
+                                <p>Princely State of British India &nbsp;<b>(1305-1948)</b></p>
+                                <hr>
+                                <h5>Historical Flag :</h5>
+                                <img class="mx-auto img-history-1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Flag_of_the_Baramba_Princely_State.svg/188px-Flag_of_the_Baramba_Princely_State.svg.png" alt="">
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <b>ଆକ୍ଷେପ (Summery) :</b>
+                                <p>ପରିବାର ଏବଂ କୋର୍ଟ ରେକର୍ଡ ଅନୁଯାୟୀ, ବାରମ୍ବା ରାଜ୍ୟ ୧୩୦୫ ମସିହାରେ ପ୍ରତିଷ୍ଠିତ ହୋଇଥିଲା ଯେତେବେଳେ ସୋନଖା ଏବଂ ମୋହୁରୀ ନାମକ ଦୁଇଟି ଗାଁକୁ ନେଇ ଏହି ଜମି ତତ୍କାଳୀନ ପୂର୍ବ ଗଙ୍ଗା ସମ୍ରାଟ ନରସିଂହ ଦେବ , କୁସ୍ତି ହଟକେଶ୍ୱର ରାଉତଙ୍କୁ ତାଙ୍କ ବୀରତ୍ୱର ମାନ୍ୟତା ପ୍ରଦାନ କରିଥିଲେ।    ବଡାମ୍ବା  ରାଜ୍ୟର ଶେଷ ଶାସକ ୧ ଜାନୁୟାରୀ ୧୯୪୮ ରେ ଭାରତୀୟ ୟୁନିଅନରେ ଯୋଗଦାନରେ ଦସ୍ତଖତ କରିଥିଲେ।</p>
+                                <P><b>କ୍ଷେତ୍ରଫଳ (Area) :</b> 368 km square (142 sq mi) <b>[1892]</b></P>
+                                <p><b>ଲୋକସଂଖ୍ୟା (population) :</b>29772</p>
+                                <p><b>ପ୍ରତିଷ୍ଠିତ (Established) :</b>1305</p>
+                                <p><b>Accession to the Indian :</b>January, 1948</p>
+                                
+                                <button class="read-history" data-bs-toggle="modal" data-bs-target="#historyModal">Read Shortly  &nbsp;<i class="fa-solid fa-book fa-sm"></i></button>
+                                <br>
+                                <a href="https://en.wikipedia.org/wiki/Baramba_State"> Source : Wikipedia <i class="fa-solid fa-arrow-up-right-from-square fa-sm"></i></a>   
+                            </div>
+                            <div class="col-lg-6 img-history-2">
+                                <img src="https://blogvirasatehind.files.wordpress.com/2019/08/img_1633.jpg?w=840" class="img-fluid" alt="History Image" style="border-radius: 20px;">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+   
+<!-- Read History Modal -->
+<div class="modal fade zoom history-modal" id="historyModal" tabindex="-1" aria-labelledby="zoomModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="zoomModalLabel">History in Short</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+  
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <!-- Add your content here -->
+          <p>କଟକ ଜିଲ୍ଲାର ଅଟାଗର ସବଡିଭିଜନ ଅଧୀନରେ ଥିବା ବର୍ତ୍ତମାନର ବାରମ୍ବା ବ୍ଲକ 1948 ମସିହାରେ ସ୍ independent ାଧୀନ ଭାରତ ସହିତ ମିଶ୍ରଣ ପୂର୍ବରୁ ଏକ ରାଜ୍ୟ ଥିଲା ଏବଂ ଉତ୍ତମ ଶାସନ ପ୍ରଦାନ କରୁଥିବା ଦୟାଳୁ ତଥା ସଚ୍ଚୋଟ ରାଜାମାନଙ୍କ ଦ୍ୱାରା ଶାସିତ ହୋଇଥିଲେ।
 
+            ତତ୍କାଳୀନ ବାରମ୍ବା ରାଜ୍ୟକୁ hen େଙ୍କାନାଳ, ହିନ୍ଦୋଲ, ଟିଗିରିଆ, ଖଣ୍ଡପାରା, ବାଙ୍କି ଏବଂ ନରସିଂହପୁର ଭଳି ସାମ୍ରାଜ୍ୟ ରାଜ୍ୟ ଘେରି ରହିଥିଲେ। ଏଠାରେ ଥିବା ରାଜ ପରିବାର ସହିତ ଏହାର ଇତିହାସ ଅନୁଯାୟୀ, ବାରମ୍ବା ରାଜ୍ୟ 1305 ଖ୍ରୀଷ୍ଟାବ୍ଦରେ ତତ୍କାଳୀନ ପୁରୀର ରାଜା କିସୋରୀ ନରସିଂହଙ୍କ କୁସ୍ତି ଭାବରେ ହାଟକେଶ୍ୱର ରାଉତ ସହିତ 1327 ଖ୍ରୀଷ୍ଟାବ୍ଦ ପର୍ଯ୍ୟନ୍ତ ରାଜ୍ୟ ଶାସନ କରୁଥିବା ବିଶ୍ believed ାସ କରାଯାଉଥିଲା।
+            
+            ସ୍ independent ାଧୀନ ଭାରତ ସହିତ ମିଶ୍ରଣ ହେବା ପର୍ଯ୍ୟନ୍ତ ତାଙ୍କର ବଂଶଧରମାନେ ହେଲେ ମଲ୍ଲିକେଶ୍ୱର ରାଉଟ୍ (1327-1345), ଦୁର୍ଗେଶ୍ୱର ମାର୍ଗ (1345-1375), ଜାମ୍ବେଶ୍ୱର ମାର୍ଗ (1375-1416), ଭୋଲେଶ୍ୱର ମାର୍ଗ (1416-1459), କାନହୁ ମାର୍ଗ (1459-1514), ମାଧବ ମାର୍ଗ । ମଙ୍ଗରାଜ (1650-1679), ବାଲାଭଦ୍ର ଚନ୍ଦ୍ର ମଙ୍ଗରାଜ (1679-1711), ଫାକିର ଚନ୍ଦ୍ର ମଙ୍ଗରାଜ (1711-1743), ବେନୁଧର ଚନ୍ଦ୍ର ମଙ୍ଗରାଜ (1743-1748), ପଦ୍ମନାଭ ଚନ୍ଦ୍ର ମଙ୍ଗରାଜ (1748-1793), ପିଣ୍ଡିକ ଚନ୍ଦ୍ର ମଙ୍ଗରାଜ (1793-1842) ), ଗୋପୀନାଥ ଚନ୍ଦ୍ର ମଙ୍ଗରାଜ (1842-1869), ଦଶରଥୀ ବିରାବରା ମଙ୍ଗରାଜ ମହାପାତ୍ର (1869-1881), ବିଶ୍ w ରବୀର ବିରବାରା ମଙ୍ଗରାଜ ମହାପାତ୍ର (1881-1922) ଏବଂ ନାରାୟଣ ଚନ୍ଦ୍ର ବିରାବରା ମଙ୍ଗରାଜ ମହାପାତ୍ର (1922-1954) |
+            
+            ସ୍ independence ାଧୀନତା ପରେ, ଯଦିଓ କ king ଣସି ରାଜାଙ୍କ ଶାସନ ନାହିଁ, ତଥାପି ରାଜବଂଶ ଶ on ବପୀଠ ସମାରୋହ କରନ୍ତି ଏବଂ ରାଜାଙ୍କୁ ସେମାନଙ୍କ ପରମ୍ପରା ଅନୁଯାୟୀ ସିଂହାସନରେ ସ୍ଥାପନ କରନ୍ତି | ରାଜା ନାରାୟଣ ଚନ୍ଦ୍ରଙ୍କ ପରେ ତାଙ୍କ ପୁତ୍ର କୃଷ୍ଣ ଚନ୍ଦ୍ର ବିରାବରା ମଙ୍ଗରାଜ ମହାପାତ୍ର ରହିଥିଲେ ଯାହାକି 1979 ପର୍ଯ୍ୟନ୍ତ ଜାରି ରହିଥିଲା।
+            
+            ସେବେଠାରୁ ତାଙ୍କ ବଡ଼ପୁଅ ତ୍ରିବିକ୍ରମ ଚନ୍ଦ୍ର ବିରବାରା ମଙ୍ଗରାଜ ମହାପାତ୍ର ପରମ୍ପରା ଅନୁଯାୟୀ ସିଂହାସନରେ ବସିଛନ୍ତି। ଯେହେତୁ ବର୍ତ୍ତମାନ ରାଜା ପ୍ରାୟତ the ରାଜ୍ୟ ବାହାରେ ରହିଛନ୍ତି, ତାଙ୍କ ସାନଭାଇ ତ୍ରିଭୂବାନ୍ ଚନ୍ଦ୍ର ରାଜକୁମାର ନାମରେ ଜଣାଶୁଣା, ରାଜକୀୟ ପରିବାର ତଥା କୃଷି ସମ୍ପତ୍ତି ମଧ୍ୟ ରାଜ ପରିବାର ନାମରେ ବଜାୟ ରଖିଛନ୍ତି।
+            
+            ରାଜକୀୟ ସମୟରେ, ବିଷୟଗୁଡିକର ଅବସ୍ଥା ବର୍ତ୍ତମାନ ଅପେକ୍ଷା ଯଥେଷ୍ଟ ଭଲ ଥିଲା, ଏହି ଅଞ୍ଚଳର ଅଧିକାଂଶ ବରିଷ୍ଠ ନାଗରିକ ମତ ଦେଇଥିଲେ। ସେମାନେ କହିଛନ୍ତି ଯେ ସ୍ଥାନୀୟ ପ୍ରଶାସନ, ଜେଲ ବ୍ୟବସ୍ଥା ଏବଂ କୋର୍ଟ ବହୁତ ଭଲ ଏବଂ ଶିକ୍ଷା, କଳା ଏବଂ ସଂସ୍କୃତି, ଧର୍ମ, ଆୟୁର୍ବେଦିକ ସ୍ୱାସ୍ଥ୍ୟ ସେବାର ବିକାଶ ବହୁତ ଉଚ୍ଚରେ ପହଞ୍ଚିଛି।
+            
+            ବାଇକୁନ୍ଥା ପଟ୍ଟନାୟକ ଏବଂ କାବିଚନ୍ଦ୍ର କାଲିଚରନ୍ ପଟ୍ଟନାୟକଙ୍କ ପରି ବିଭିନ୍ନ ସାହିତ୍ୟିକମାନେ ଏଠାରେ ରାଜାମାନଙ୍କ ଦ୍ opened ାରା ଖୋଲାଯାଇଥିବା ଭାଷା ବିଦ୍ୟାଳୟରେ ଶିକ୍ଷା ଲାଭ କରିପାରନ୍ତି।
+            
+            ରାଜା ବିଶ୍ୱାମର ବିରବର ମଙ୍ଗରାଜ ମହାପାତ୍ର ରାଣୀ ସୁଶୀଲା ଦେବୀଙ୍କ ନାମରେ ଏକ ପ୍ରାଥମିକ ବିଦ୍ୟାଳୟ ଖୋଲିଥିଲେ। ସେ ଜଣେ ଭଲ କ୍ରୀଡା ବ୍ୟକ୍ତି ଯିଏ ଫୁଟବଲକୁ ପ୍ରାଧାନ୍ୟ ଦେଇଥିଲେ ଏବଂ "ରାଜ ବିଶ୍ b ାମବର କ୍ଲବ ଫୁଟବଲ ଏକାଦଶ" ଗଠନ କରିଥିଲେ ଏବଂ 1940 ଦଶକରେ ଓଡିଶାର ଶ୍ରେଷ୍ଠ ଫୁଟବଲ ଦଳ ଭାବରେ ଦାବି କରାଯାଇଥିଲା। ରାଜା ନାରାୟଣ ଚନ୍ଦ୍ର ବିରବାରା ମଙ୍ଗରାଜ ମହାପାତ୍ର ବାରମ୍ବା ପୋଲିସ ଷ୍ଟେସନ, ଜେଲ, ତହସିଲ କାର୍ଯ୍ୟାଳୟ ପ୍ରତିଷ୍ଠା କରି ନାଗରିକ ତଥା ଅପରାଧିକ କୋର୍ଟ ଆରମ୍ଭ କରିଥିଲେ। ସେ ସାହିତ୍ୟିକ ଏବଂ କବିମାନଙ୍କୁ ଭଲ ପାଉଥିଲେ ଏବଂ ତାଙ୍କ ପ୍ରାସାଦରେ ବିଭିନ୍ନ ଆନ୍ତ state ରାଜ୍ୟ ସାହିତ୍ୟ ସଭା ଆୟୋଜନ କରିଥିଲେ |
+            
+            ସେ ନିଜ ରାଜ୍ୟର ମାନିବାନ୍ଦ ବୁଣାକାରଙ୍କୁ ବହୁତ ଭଲ ଗୁଣାତ୍ମକ ହସ୍ତତନ୍ତ ଶା are ୀ ଉତ୍ପାଦନ କରିବାକୁ ଉତ୍ସାହିତ କରିଥିଲେ ଯାହା ପାଇଁ ମାନିଆବାନ୍ଦୀ ସାରୀ ବର୍ତ୍ତମାନ ବିଶ୍ worldwide ର ମାନ୍ୟତା ପାଇଛି |
+            
+            ନାରାୟଣ ମଙ୍ଗରାଜ ମଧ୍ୟ 1924 ମସିହାରେ ବ୍ରିଟିଶ ସାମ୍ରାଜ୍ୟ ପ୍ରଦର୍ଶନୀରେ ମାନିଆବାନ୍ଦୀ ସାର ସହିତ ଅଂଶଗ୍ରହଣ କରିଥିବାରୁ ବ୍ରିଟିଶ ସରକାରଙ୍କ ପଦକ ସହିତ ସମ୍ମାନର ପ୍ରମାଣପତ୍ର ପାଇଥିଲେ। ସେ ପ୍ରକୃତି ଏବଂ ପରିବେଶକୁ ଭଲ ପାଉଥିଲେ। ତାଙ୍କ ସମୟରେ ବହୁ ପରିମାଣର ଜଙ୍ଗଲଜାତ ଦ୍ରବ୍ୟ ବିଦେଶୀ ଦେଶକୁ ରପ୍ତାନି ହୋଇଥିଲା |
+            
+            ଗୋରୁ ପାଳିବା ଏବଂ କୃଷି ସାଧାରଣ ଜନତାଙ୍କର ମୁଖ୍ୟ ବୃତ୍ତି ଥିଲା | ହାତୀ ଦାନ୍ତ, ପିତ୍ତଳ ଏବଂ ସୁନା କ ill ଶଳ ସହିତ ଅଳଙ୍କାର ତିଆରିକୁ ମଧ୍ୟ ପ୍ରୋତ୍ସାହିତ କରାଯାଇଥିଲା | ଏହା ବ୍ୟତୀତ, ତାଙ୍କ ରାଜ୍ୟ ଯେକ kind ଣସି ପ୍ରକାରର ନିଷେଧାଦେଶରୁ ମୁକ୍ତ ଥିଲା |
+            
+            ମଦ ପିଇବା ଏବଂ ଗଞ୍ଜା ବ୍ୟବହାରକୁ ରାଜା ଗୁରୁତର ଭାବରେ ବ୍ୟବହାର କରିଥିଲେ। ସନାତନ ଧର୍ମର ଅନୁଗାମୀ ହୋଇ ରାଜାମାନେ ପ୍ରଭୁ ଜଗନ୍ନାଥଙ୍କ ମନ୍ଦିର ନିର୍ମାଣ କରିଥିଲେ ଯେଉଁଠାରେ ପ୍ରାୟ six ଫୁଟ ଉଚ୍ଚର ଉଚ୍ଚତମ କାଠ ପ୍ରତିମୂର୍ତ୍ତି 200 ବର୍ଷରୁ ଅଧିକ ସମୟ ଧରି ନାବକଲେବର କିମ୍ବା ମୂର୍ତ୍ତିର ପରିବର୍ତ୍ତନ ବିନା ପୂଜା କରାଯାଉଥିଲା। ରାଜପ୍ରାସାଦ ପରିସରରେ ଅବସ୍ଥିତ ମନ୍ଦିରରେ ପ୍ରଭୁ ଗୋପୀନାଥ, ସୂର୍ଯ୍ୟ ଏବଂ ଅନ୍ୟାନ୍ୟ ଦେବତାଙ୍କୁ ପୂଜା କରାଯାଏ | ଶହ ଶହ ବର୍ଷର ସୁନ୍ଦରୀ ଏବେ ମଧ୍ୟ ରାଜପ୍ରାସାଦରେ କାମ କରୁଛନ୍ତି | ଉପଯୁକ୍ତ ଯତ୍ନର ଅଭାବ ହେତୁ କେତେକ ସ୍ଥାନରେ ଥିବା ମହଲା ମହଲ ଭାଙ୍ଗି ଯାଇଛି |
+            
+            ତେବେ ରାଜକୁମାର ଟ୍ରିବୁବାନ୍ ଏହାକୁ ପୁନରୁଦ୍ଧାର ପାଇଁ କଠିନ ଚେଷ୍ଟା କରୁଛନ୍ତି। ରାଜା ତ୍ରିବିକ୍ରମ ଦେବ ଏବଂ ତାଙ୍କ ଭାଇ ରାଜକୁମାର ତ୍ରିଭୂତ ଚନ୍ଦ୍ର ଦେବ ଆଜିର ଖରାପ ରାଜନୀତିରେ ଯୋଗଦେବାକୁ ଆଗ୍ରହୀ ନୁହଁନ୍ତି। ତ୍ରିବିକ୍ରମ ହେଉଛି ରାୟପୁରର ରାଜକୁମାର ମହାବିଦ୍ୟାଳୟର ସଭାପତି, ଶାସକ ଦଳ, ବିଶେଷ ଭାବରେ ରାଜ ପରିବାର ପାଇଁ ଉଦ୍ଦିଷ୍ଟ |</p>
+       <!-- Modal Footer -->
+       
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <!-- Add additional buttons if needed -->
+      </div>
+       
+  
+        
+  
+      </div>
+    </div>
+  </div>
+  
+<!-- list of kings -->
+
+<div class="accordion mt-5" id="listAccordion">
+    <div class="news-section">
+    <h5>List of Kings :</h5>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="listHeading1">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#listCollapse1" aria-expanded="false" aria-controls="listCollapse1">
+          <b>Hatakeshwar Raut (1305-1327), The First King to Rule Over Baramba, A Wrestler</b>
+        </button>
+      </h2>
+      <div id="listCollapse1" class="accordion-collapse collapse" aria-labelledby="listHeading1" data-bs-parent="#listAccordion">
+        <div class="accordion-body">
+          <ul>
+            <li><b>Mallikeswar Rout (1327-1345) <hr> Durgeswar Rout (1345-1375)<hr> Jambeswar Rout (1375-1416)<hr> Bholeswar Rout(1416-1459)<hr> Kanhu Rout (1459-1514)<hr> Madhab Rout (1514-1537)<hr> Nabin Rout (15537-1560)<hr> Brajadhar Rout (1560-1584)<hr> Chandrasekhar Mangaraj (1584-1617)<hr> Narayan Chandra Mangaraj (1617-1635)<hr> Krishna Chandra Mangaraj (1635-1650)<hr> Gopinath Chandra Mangaraj (1650-1679)<hr> Balabhadra Chandra Mangaraj (1679-1711)<hr> Fakir Chandra Mangaraj(1711-1743)<hr> Benudhar Chandra Mangaraj (1743-1748)<hr> Padmanav Chandra Mangaraj (1748-1793)<hr> Pindik Chandra Mangaraj (1793-1842)<hr> Gopinath Chandra Mangaraj ( 1842-1869)<hr> Dasarathi Birabara Mangaraj Mohapatra (1869-1881)<hr> Biswambhar Birabara Mangaraj Mohapatra (1881-1922) <hr> Narayan Chandra Birabara Mangaraj Mohapatra (1922-1954)</b></li>
+            <!-- <hr>
+            <li>king3</li>
+            <hr>
+            <li>Item 1.3</li>
+          </ul> -->
+        </div>
+      </div>
+    </div>
+</div>
+
+  
+  
+  
 
 <!-- upcoming events -->
-<section class="bg-white rounded-2xl p-6 mb-8 events-section">
+<section class="bg-white rounded-2xl p-6 mb-8 events-section mt-5">
     <h2 class="text-2xl font-bold mb-4 text-gray-800">Upcoming Events</h2>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -276,91 +474,83 @@ module.exports = {
 
 <!-- Community resources -->
 
-<!-- hospital -->
-<div class="container">
-    <h2 class="font-bold mb-4">Community Resources :</h2>   
-    <div class="row">
-      <div class="col-md-8">
-        <div class="wide-box resources">
-          <h2>24x7 Hospitality <i class="fa-solid fa-hospital"></i></h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <hr>
-          
-          <h2>24x7 Ambulance <i class="fa-solid fa-truck-medical"></i></h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <hr>
-          <h2>Strong Communities</h2>
-            <hr>
-            <h2>Youth Clubs</h2>
-            <hr>
-            <h2>Sports Grounds</h2>
-        </div>   
-      </div>
-    </div>
+
+<!-- ----------- -->
+<!-- Form to Add Comments -->
+<div class="news-section">
+ <div class="container mt-5">
+
+  <h5 class="comment-section-header">Comments section :
+  </h5>
+
+   
+    <!-- Small window -->
+   
+      <p class="beta-faq-popup-content"><b>Info</b>&nbsp;<i class="fa-solid fa-circle-question"></i> Reply,edit and delete options are under <i class="fa-solid fa-laptop-code"></i></p>
+    
+    <p class="upper-right-text ">Beta version </p>
+    
+
+
+    
+    <!-- Comment Form -->
+<form id="commentForm" class="mb-4">
+  <div class="mb-3">
+    <label for="comment" class="form-label">Comment:</label>
+    <textarea class="form-control" id="comment" required></textarea>
   </div>
-  <!-- comment section -->
- 
-<div class="container mt-5 news-section">
-    <div class="row">
-        <div class="col-md-8">
-            <h2>Comments</h2>
-            
-            <!-- Comment Form -->
-            <form>
-                <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="name" required>
-                </div>
-                <div class="mb-3">
-                    <label for="comment" class="form-label">Comment</label>
-                    <textarea class="form-control" id="comment" rows="3" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Post Comment</button>
-            </form>
-            
-            <!-- Comment List -->
-            <div class="mt-4">
-                <div class="mb-3">
-                    <strong>Soumyaranjan Behera <i class="bi bi-patch-check-fill fa-xs"></i></strong>
-                    <p>This is a sample comment. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-                <div class="mb-3">
-                    <strong>Gugul Dalua <i class="bi bi-patch-check-fill fa-xs"></i></strong>
-                    <p>Another comment here. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                </div>
-                <!-- Add more comments as needed -->
-            </div>
-        </div>
-    </div>
+  <button type="button" class="comment-btn" id="addCommentBtn">Add Comment</button>
+</form>
+<hr>
+
+<!-- Comment Display -->
+<div id="comments"></div>
+
+  </div>
 </div>
+<!-- -------------------- -->
 
-<div id="disqus_thread"></div>
+<!-- -------------------- -->
 <script>
-    /**
-    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-    /*
-    var disqus_config = function () {
-    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    */
-    (function() { // DON'T EDIT BELOW THIS LINE
-    var d = document, s = d.createElement('script');
-    s.src = 'https://badamba.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+// scroll to particular sectioin--------------
+function smoothScrollTo(targetId) {
+  const targetElement = document.getElementById(targetId);
 
+  if (targetElement) {
+    const viewportHeight = window.innerHeight;
+    const targetOffset = targetElement.offsetTop;
+    const targetHeight = targetElement.offsetHeight;
 
+    const scrollToPosition = targetOffset - (viewportHeight - targetHeight) / 5;
 
+    window.scrollTo({
+      top: scrollToPosition,
+      behavior: 'smooth'
+    });
+  }
+}
+
+// toggle forms
+function toggleForms() {
+  var signupForm = document.getElementById("signupForm");
+  var loginForm = document.getElementById("loginForm");
+
+  // Toggle visibility of signup and login forms
+  signupForm.style.display = signupForm.style.display === "none" ? "block" : "none";
+  loginForm.style.display = loginForm.style.display === "none" ? "block" : "none";
+}
+  </script>
+  <!-- --------- -->
+
+  <!-- ------------ -->
 <!-- Bootstrap JS and Popper.js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<!-- comment section  -->
-<script id="dsq-count-scr" src="//badamba.disqus.com/count.js" async></script>
+<script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+
+
+
 <script>
     AOS.init();
   </script>
