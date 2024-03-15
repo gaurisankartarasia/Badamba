@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&display=swap");
+
 :root {
   --c-white: #fff;
   --c-black: #000;
@@ -24,78 +25,44 @@
   box-sizing: border-box;
   font-family: "Spline Sans", sans-serif;
 }
+header, nav{
+  height: 7vh;
+  position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header-logo-text{
+  color: white;
+  font-family: 'Segoe UI',sans-serif;
+  font-weight: bold;
+}
 
-header
-{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 40px 100px;
-  z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-header .logo
-{
-  color: #fff;
-  text-transform: uppercase;
-  cursor: pointer;
-}
+
+
 body{
   color: #333;
   background-color: var(--c-ash) !important;
 }
-.toggle
-{
-  position: relative;
-  width: 60px;
-  height: 60px;
-  background: url(https://i.ibb.co/HrfVRcx/menu.png);
-  background-repeat: no-repeat;
-  background-size: 30px;
-  background-position: center;
-  cursor: pointer;
-}
-.toggle.active
-{
-  background: url(https://i.ibb.co/rt3HybH/close.png);
-  background-repeat: no-repeat;
-  background-size: 25px;
-  background-position: center;
-  cursor: pointer;
-}
+
 .showcase
 {
-  position: absolute;
+  position: relative;
   right: 0;
   width: 100%;
-  min-height: 100vh;
+  min-height: 80vh;
   padding: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #111;
+  background: #6f6f6f;
   transition: 0.5s;
   z-index: 2;
 }
-.showcase.active
-{
-  right: 260px;
-}
-
-.showcase video
-{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.8;
-}
-
 
 .image-container {
   position: relative;
@@ -111,7 +78,7 @@ body{
   top: 180px; 
   left: 270px; 
 }
-@media(max-width: 676px){
+@media(max-width: 676px)  {
   .image-container {
     position: relative;
     bottom: 35%;
@@ -189,60 +156,9 @@ position: relative;
 {
   letter-spacing: 6px;
 }
-.social
-{
-  position: absolute;
-  z-index: 10;
-  bottom: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.social li
-{
-  list-style: none;
-}
-.social li a
-{
-  display: inline-block;
-  margin-right: 20px;
-  filter: invert(1);
-  transform: scale(0.5);
-  transition: 0.5s;
-}
-.social li a:hover
-{
-  transform: scale(0.5) translateY(-15px);
-}
-.menu
-{
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 300px;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.menu ul
-{
-  position: relative;
-}
-.menu ul li
-{
-  list-style: none;
-}
-.menu ul li a
-{
-  text-decoration: none;
-  font-size: 24px;
-  color: #111;
-}
-.menu ul li a:hover
-{
-  color: #03a9f4; 
-}
+
+
+
 
 @media (max-width: 991px)
 {
@@ -260,6 +176,66 @@ position: relative;
     font-size: 2em;
   }
 }
+/* hamburger */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  
+}
+
+.dropdown-toggle {
+  color: #fff;
+  font-size: 14px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  outline: none;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid grey;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 10px;
+  top: 40px;
+  right: 0;
+  min-width: 120px;
+  z-index: 1;
+  border-radius: 5px;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.dropdown-menu li {
+  list-style-type: none;
+  margin: 5px 0;
+  text-align: center;
+  overflow: hidden;
+}
+
+.dropdown-menu li a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  display: block;
+  padding: 8px 12px;
+  transition: background-color 0.3s;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #f2f2f2;
+  overflow: hidden;
+}
+#logoutBtn{
+  color: rgb(251, 71, 71);
+  display: flex;
+  align-items: center;
+}
 /* explore */
 .places-section {
     padding: 80px 0;
@@ -272,7 +248,7 @@ position: relative;
     margin-bottom: 30px;
     transition: transform 0.3s ease-in-out;
     border-radius: 10px;
-    box-shadow: 0 30px 30px -25px rgba(65, 51, 183, 0.25);
+    /* box-shadow: 0 30px 30px -25px rgba(65, 51, 183, 0.25); */
     background-color: var(--c-white);
 }
 .place-image {
@@ -352,7 +328,7 @@ background-color:var(--c-governor);
 .singhanath{
     border: none !important;
     background-color: white;
-    box-shadow: 0 30px 30px -25px rgba(65, 51, 183, 0.25);
+    /* box-shadow: 0 30px 30px -25px rgba(65, 51, 183, 0.25); */
 }
 /* news articles */
 .news-section {
@@ -435,17 +411,79 @@ background-color:var(--c-governor);
   box-shadow: 0 30px 30px -25px rgba(65, 51, 183, 0.25);
     background-color: var(--c-white);
 }
+/* history */
+.history{
+  background-color: #f6f9e9;
+}
+.img-history-2 img{
+  border: 2px solid white;
+}
+.read-history{
+  background-color: #1FCAC5;
+  padding: 8px;
+  color: white;
+  border-radius: 10px;
+  margin-bottom: 5%;
+}
 
 /* events ssection */
 .events-section{
-  box-shadow: 0 30px 30px -25px rgba(65, 51, 183, 0.25);
+  /* box-shadow: 0 30px 30px -25px rgba(65, 51, 183, 0.25); */
   background-color: var(--c-white);
 }
 /* communty resources */
-.wide-box.resources {
-  background-color: #fff;
-  color: #333;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 30px 30px -25px rgba(65, 51, 183, 0.25);
+
+/* list og kings */
+
+.accordion-button:focus {
+  box-shadow: none !important;
+}
+/* comment section */
+.upper-right-text {
+  position: relative;
+  font-weight: bold;
+  text-align: center;
+  color: rgb(25, 61, 159);
+ background-color: rgb(215, 225, 253);
+ padding: 4px;
+ border-radius: 6px;
+ margin-right: 91%;
+ display: flex;
+ white-space: nowrap;
+}
+
+
+.beta-faq-popup-content{
+  border: 1px dotted orange;
+  font-size: 12px;
+  border-radius: 6px;
+  background-color: rgb(242, 221, 182);
+  padding: 1px;
+}
+
+
+.comment-btn{
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  background-color: rgb(43, 196, 97);
+  padding: 7px;
+  border-radius: 6px;
+}
+.comment-btn:hover{
+  background-color: rgb(35, 176, 84);
+}
+@media(max-width: 676px){
+  .upper-right-text{
+    margin-right: 61%; 
+  }
+
+}
+.comment-display{
+  background-color:rgb(215, 225, 253);
+  
+}
+/* footer */
+.footer{
+  background-color: #1FCAC5;
 }
