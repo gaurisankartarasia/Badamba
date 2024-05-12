@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script type="module" src="login.js"></script>
+    <title>Signup/Login Form</title>
+    <!--  Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+   
+</head>
+<style>
+  body{
+    font-family: Arial, Helvetica, sans-serif;
+  }
+</style>
+<body class="bg-gray-200 p-8 login-page-bg ">
+  
+  
+  <div class="w-full max-w-md mx-auto">
+
+    <form onsubmit="login(); return false;" class="bg-white shadow-sm rounded px-8 pt-6 pb-8 mb-4">
+      <img rel="preload" class="w-36 mx-auto" src="https://static.vecteezy.com/system/resources/previews/008/853/660/original/object-element-ui-login-3d-illustration-png.png" alt="Login" oncontextmenu="return false" draggable="false">
+
+    <!-- sign in with google -->
+
+    <button class="login_btn_google flex mb-1 mx-auto border border-secondary p-2 m-1 rounded-full" onclick="signInWithGoogle ()">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0 0 48 48">
+        <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"></path><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"></path><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"></path><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"></path>
+        </svg>  &nbsp; Sign in with Google
+    </button>
+    
+
+                 <b class="flex justify-center">OR</b>
+
+
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="email" required>
+          Email
+        </label>
+        <input type="email" id="loginEmail" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  placeholder="email">
+      </div>
+      <div class="mb-6">
+        <label  class="block text-gray-700 text-sm font-bold mb-2" for="password" >
+          Password
+        </label>
+        <input id="loginPassword" type="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"  placeholder="password">
+        <a class="inline-block align-baseline hover:underline text-sm text-black" href="#">
+          Forgot Password?
+        </a>
+      </div>
+     
+      <div class="flex items-center justify-center">
+        <button type="submit" class="bg-black hover:bg-violet-700 text-white font-bold px-32 py-2 rounded focus:outline-none focus:shadow-outline" type="button">
+          Sign In
+        </button>
+        
+      </div>
+    
+    </form>
+
+  </div>
+ 
+  <div  class="flex flex-col md:flex-row ">
+   
+    
+  <script>
+    
+  </script>
+  
+   
+  
+  
+  <!-- <h2 class="text-xl py-36">OR</h2> -->
+      <div class="max-w-lg mx-auto bg-white rounded-2xl overflow-hidden p-6 login-bg" id="signup-form" style="display: none;">
+          
+          <!-- Signup Form -->
+     
+  
+        
+  
+  
+          
+         
+          
+  
+         
+          
+  <h2 class="text-2xl font-bold mb-4">Signup</h2>
+  
+  
+  
+  
+  
+        <div class="flex flex-wrap mb-4 ">
+            
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <input type="text" id="signupFirstName" placeholder="First Name" class="w-full px-4 py-3 rounded-lg border border-gray focus:outline-none focus:border-gray-400">
+              </div>
+              <div class="w-full md:w-1/2 px-3">
+                  <input type="text" id="signupLastName" placeholder="Last Name" class="w-full px-4 py-3 rounded-lg border border-gray focus:outline-none focus:border-gray-400">
+              </div>
+          </div>
+          <div class="flex flex-wrap mb-4">
+              <div class="w-full px-3">
+                  <input type="email" id="signupEmail" placeholder="Email" class="w-full px-4 py-3 rounded-lg border border-gray focus:outline-none focus:border-gray-400">
+              </div>
+          </div>
+          <div class="flex flex-wrap mb-4">
+              <div class="w-full px-3">
+                  <input type="password" id="signupPassword" placeholder="Password" class="w-full px-4 py-3 rounded-lg border border-gray focus:outline-none focus:border-gray-400">
+              </div>
+          </div>
+          <div class="flex flex-wrap mb-4">
+              <div class="w-full px-3">
+                  <input type="file" id="profilePicture" accept="image/*" onchange="previewProfilePicture()" class="w-full px-4 py-3 rounded-lg border border-gray focus:outline-none focus:border-gray-400">
+              </div>
+          </div>
+          <div class="flex flex-wrap mb-4">
+              <div class="w-full px-3">
+                  <select id="gender" class="w-full px-4 py-3 rounded-lg border border-gray focus:outline-none focus:border-gray-400">
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                  </select>
+              </div>
+          </div>
+          <div class="flex flex-wrap mb-4">
+              <div class="w-full px-3">
+                <p>Date of Birth :</p>
+                   <input type="number" id="age" placeholder="Age" class="w-full px-4 py-3 rounded-lg border border-gray focus:outline-none focus:border-gray-400">
+                  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+                  <input type="text" id="birthday" placeholder="Birthday (dd/mm/yyyy)" class="w-full px-4 py-3 rounded-lg border border-gray focus:outline-none focus:border-gray-400">
+  
+              </div>
+          </div>
+          <div class="flex flex-wrap mb-4">
+              <div class="w-full px-3">
+                  <textarea id="address" placeholder="Address" class="w-full px-4 py-3 rounded-lg border border-gray focus:outline-none focus:border-gray-400"></textarea>
+              </div>
+          </div>
+          <div class="flex flex-wrap mb-4">
+              <div class="w-full px-3">
+                  <button onclick="signup()" class="w-full px-4 py-3 bg-indigo-500 text-white rounded-lg focus:outline-none hover:bg-indigo-700">Signup</button>
+                
+                  
+              </div>
+              
+          </div>
+          <button id="toggle-login-btn" style="color: rgb(0, 89, 255);font-weight: 450;">Already have an account? Login now</button>
+  </div>
+  
+  
+  
+  
+    
+  
+    
+  
+
+  
+  
+
+
+
+
+
+
+  <!-- <button id="logoutBtn" style="display: none;font-size: 20px;background-color: rgb(246, 66, 66);color: white;cursor: pointer;border: none;border-radius: 4px;padding: 5px;" onclick="logout()">Logout <i class="fa-solid fa-right-from-bracket fa-sm"></i></button> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!--  modal markup -->
+
+
+<div id="modal" class="modal">
+    <div class="modal-content">
+      <img class="mx-auto" src="https://cdn3d.iconscout.com/3d/premium/thumb/error-page-6788380-5600948.png" alt="" width="250px" oncontextmenu="return false" draggable="false">
+      <p class="text-center mx-auto" id="modal-message"></p>
+      <a href="#" onclick="sendEmail()" style="color: #007bff;">Contact us</a>
+      <span class="close">Ok</span>
+    </div>
+  </div>
+  <!-- profile picture -->
+ 
+  <style>
+.modal, .modal1 {
+  display: none; 
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+.modal-content, .modal-content-1 {
+  background-color: #fefefe;
+  margin: 10% auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 10px;
+  width: 40%; 
+} 
+
+@media (max-width: 767px){
+    .modal-content{
+  width: 90% !important; 
+    }
+}
+
+@media (max-width: 1024px){
+    .modal-content{
+        width: 70%;  
+    }  
+}
+
+/* Close Button */
+.close {
+  color: #007bff;
+  float: right;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+  </style>
+  
+
+
+
+  
+
+
+  <!-- login success Modal -->
+  <div id="loginSuccessModal" class="">
+    <div class="fixed top-0 left-0 right-0 bg-gray-500 bg-opacity-50 z-50 flex justify-center items-center h-screen ">
+      <div class="bg-white rounded-lg shadow-md p-8 text-center animate__animated animate__zoomIn">
+<img class="w-36 mx-auto" src="https://img.freepik.com/premium-vector/check-mark-icon-3d-vector-illustration-design-element_7087-2148.jpg" alt="Login Successful">   
+     <h2 class="text-xl font-medium mb-4">Login Successful!</h2>
+        <p class="text-gray-600">Returning to homepage...</p>
+        <!-- <a href="#" class="inline-flex items-center px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+          Go to Dashboard
+          <svg class="w-4 h-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 ll0-1-1v-3a1 1 0 011-1h11.586l-1.293-1.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </a> -->
+      </div>
+    </div>
+    
+  </div>
+  <script>
+      var modal = document.getElementById("loginSuccessModal");
+  modal.style.display = "none";
+  </script>
+<style>
+   #loginSuccessModal {
+  display: none; 
+  position: fixed;
+  top: 20%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.modal-container {
+  background-color: white;
+  transform: translateY(50%);
+  max-width: 30%;
+  padding: 20px;
+  border-radius: 10px;
+  animation: zoomIn 0.3s ease forwards;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
+}
+
+@media (max-width: 767px){
+    .modal-container{
+        max-width: 90%;
+    }
+}
+@keyframes zoomIn {
+        from {
+            transform: scale(0);
+        }
+        to {
+            transform: scale(1);
+        }
+    }
+</style>
+
+
+
+
+
+
+
+
+<script>
+    // function for sending msg------------------------------------------------------------
+
+function sendEmail() {
+  // the email address you want to send the email to
+  var email = 'gaurisankar.work@gmail.com';
+  // Replace 'subject' with your desired subject line
+  var subject = 'Subject here: ';
+  // Replace 'body' with your desired email body
+  var body = 'Message:\n\n\n\nYour Name: \nYour Email: \n';
+
+  // Encode special characters in subject and body
+  subject = encodeURIComponent(subject);
+  body = encodeURIComponent(body);
+
+  // Construct the mailto URL
+  var mailtoLink = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
+
+  // Open the mailto URL in a new window or tab
+  window.open(mailtoLink);
+}
+
+
+</script>
+<!-- <script type="module" src="login.js"></script> -->
+
+</body>
+</html>
