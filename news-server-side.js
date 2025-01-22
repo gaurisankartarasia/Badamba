@@ -3,15 +3,7 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-aut
 import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
 
 // Your web app's Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyAHbJ2pK6lIr3WzHRU3vPGxkboXqn0ott0",
-    authDomain: "nacbadamba.firebaseapp.com",
-    projectId: "nacbadamba",
-    storageBucket: "nacbadamba.appspot.com",
-    messagingSenderId: "653770638123",
-    appId: "1:653770638123:web:b9c0d608c902adbb1b7b6e",
-    measurementId: "G-Y1WQQVE4HD"
-};
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
